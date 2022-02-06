@@ -84,24 +84,28 @@ function Legends() {
     const [time, setTime] = useState('');
     const [response, setResponse] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
 
         if (batch === "All") setBatch("");
         if (branch === "All") setBranch("");
         if (type === "All") setType("");
         if (time === "All") setTime("");
 
-        const data = {
-            batch: batch,
-            branch: branch,
-            type: time,
-            time: type
+        const func = async () => {
+            const data = {
+                batch: batch,
+                branch: branch,
+                type: time,
+                time: type
+            }
+            const res = await client.post("/legends/getLegends", data);
+
+            console.log(res)
+
+            setResponse(res.data);
         }
-        const res = await client.post("/legends/getLegends", data);
+        func();
 
-        console.log(res)
-
-        setResponse(res.data);
     }, [batch, branch, time]);
 
     const handleChange = (value, setter) => {
