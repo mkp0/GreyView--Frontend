@@ -32,7 +32,7 @@ export const Routes = [
     {
         id: 5,
         component: CeatePost,
-        path: "/profile",
+        path: "/create",
         exact: true,
     },
     {
