@@ -4,9 +4,6 @@ import { useEffect } from 'react'
 
 function Cards({ data }) {
 
-    useEffect(() => {
-        console.log(data)
-    }, []);
 
     return <div>
         <Card title={data.name} extra={<a href="#">More</a>} style={{ width: 300 }}>

@@ -106,7 +106,7 @@ function Legends() {
         }
         func();
 
-    }, [batch, branch, time]);
+    }, [batch, branch, time, type]);
 
     const handleChange = (value, setter) => {
         setter(value);
