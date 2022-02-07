@@ -2,84 +2,25 @@ import React, { useState } from 'react';
 import { Dropdown, Input, Button } from 'semantic-ui-react'
 import client from "../../Utils/CONNECTION";
 
-const Branch = [
-    {
-        text: 'EE',
-        value: 'EE',
-    },
-    {
-        text: 'EC',
-        value: 'EC',
-    },
-    {
-        text: 'CS',
-        value: 'CS',
-    },
-]
+import { Branches } from "../../Assets/Data/branchData"
+import { Batches } from "../../Assets/Data/batchData"
+import { Pricing } from "../../Assets/Data/pricingData"
+import { Types } from "../../Assets/Data/TypeData"
+import { Companies } from "../../Assets/Data/companydata"
+import { Times } from "../../Assets/Data/timeData"
 
-const Batch = [
-    {
-        text: '2018',
-        value: '2018',
-    },
-    {
-        text: '2019',
-        value: '2019',
-    },
-    {
-        text: '2020',
-        value: '2020',
-    },
-]
 
-const Time = [
-    {
-        text: 'All',
-        value: 'All',
-    },
-    {
-        text: 'Fulltime',
-        value: 'Fulltime',
-    },
-    {
-        text: 'Intern',
-        value: 'Intern',
-    }
-]
-
-// const Type = [
-//     {
-//         text: 'Core',
-//         value: 'Core',
-//     },
-//     {
-//         text: 'Non-Core',
-//         value: 'Non-Core',
-//     },
-//     {
-//         text: 'Analytics',
-//         value: 'Analytics',
-//     }
-// ]
-
-const Priceing = [
-    {
-        text: 'K',
-        value: 'K',
-    }, {
-        text: 'LPA',
-        value: 'LPA',
-    },
-]
 
 function CeatePost() {
 
     const [name, setName] = useState('');
     const [Package, setPackage] = useState('');
-    const [priceing, setPriceing] = useState(Priceing[0].value);
-    const [batch, setBatch] = useState(Batch[0].value);
-    const [branch, setBranch] = useState(Branch[0].value);
-    const [type, setType] = useState(Time[0].value);
+    const [pricing, setPricing] = useState(Pricing[0].value);
+    const [batch, setBatch] = useState(Batches[0].value);
+    const [branch, setBranch] = useState(Branches[0].value);
+    const [type, setType] = useState(Types[0].value);
+    const [time, setTime] = useState(Times[0].value);
+    const [companies, setCompanies] = useState(Companies[0].value);
 
     const handleChange = (value, setter) => {
         setter(value);
@@ -91,16 +32,19 @@ function CeatePost() {
         const data = {
             "name": name,
             "package": Package,
-            "priceing": priceing,
+            "pricing": pricing,
             "batch": batch,
             "branch": branch,
-            "type": type
+            "type": type,
+            "time": time,
+            "company": companies
         };
+
+        console.log(data)
 
         const res = await client.post("/legends/postLegend", data);
         console.log(res)
     }
-    // const [time, setTime] = useState('');
 
     return <div>
         <Input placeholder=' Name ' onChange={(e, { value }) => {
@@ -115,8 +59,8 @@ function CeatePost() {
             <Dropdown
                 inline
                 header='Batch'
-                options={Batch}
-                defaultValue={Batch[0].value}
+                options={Batches}
+                defaultValue={Batches[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setBatch);
                 }}
@@ -128,8 +72,8 @@ function CeatePost() {
             <Dropdown
                 inline
                 header='Branch'
-                options={Branch}
-                defaultValue={Branch[0].value}
+                options={Branches}
+                defaultValue={Branches[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setBranch);
                 }}
@@ -139,11 +83,11 @@ function CeatePost() {
             Pricing:
             <Dropdown
                 inline
-                header='priceing'
-                options={Priceing}
-                defaultValue={Priceing[0].value}
+                header='Pricing'
+                options={Pricing}
+                defaultValue={Pricing[0].value}
                 onChange={(e, { value }) => {
-                    handleChange(value, setPriceing);
+                    handleChange(value, setPricing);
                 }}
             />
         </div>
@@ -152,10 +96,36 @@ function CeatePost() {
             <Dropdown
                 inline
                 header='Type'
-                options={Time}
-                defaultValue={Time[0].value}
+                options={Types}
+                defaultValue={Types[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setType);
+                }}
+            />
+        </div>
+
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            Type:
+            <Dropdown
+                inline
+                header='Time'
+                options={Times}
+                defaultValue={Times[0].value}
+                onChange={(e, { value }) => {
+                    handleChange(value, setTime);
+                }}
+            />
+        </div>
+
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            company:
+            <Dropdown
+                inline
+                header='Companies'
+                options={Companies}
+                defaultValue={Companies[0].value}
+                onChange={(e, { value }) => {
+                    handleChange(value, setCompanies);
                 }}
             />
         </div>

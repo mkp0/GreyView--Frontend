@@ -1,16 +1,15 @@
-import { Card } from 'antd';
-
+import CardContainer from "./CardContainer";
+import Title from "./CardTitle";
+import CardDescription from "./CardDiscription";
 
 function Cards({ data }) {
 
-
     return <div>
-        <Card title={data.name} extra={<a href="https://greyview.herokuapp.com/">More</a>} style={{ width: 300 }}>
-            <p>stipend : {data.package}</p>
-            <p>branch : {data.branch}</p>
-            <p>batch : {data.batch}</p>
-            <p>type : {data.Type}</p>
-        </Card>
+        <CardContainer>
+            <Title name = {data.name} company = {data.company} />
+            <p>{data.time==='FullTime'?'Package' : 'Stipend'}  : {data.package} {data.pricing}</p>
+            <CardDescription batch = {data.batch}  branch={data.branch} type={data.type} time={data.time} />
+        </CardContainer>
     </div>;
 }
 

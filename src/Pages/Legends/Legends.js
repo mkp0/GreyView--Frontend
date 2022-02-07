@@ -2,102 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'semantic-ui-react'
 import Cards from "../../Components/Cards/Cards"
 import client from "../../Utils/CONNECTION";
+import { Branches } from "../../Assets/Data/branchData"
+import { Batches } from "../../Assets/Data/batchData"
+import { Types } from "../../Assets/Data/TypeData"
+import { Companies } from "../../Assets/Data/companydata"
+import { Times } from "../../Assets/Data/timeData"
 
-
-const Branch = [
-    {
-        text: 'All',
-        value: 'All',
-    },
-    {
-        text: 'EE',
-        value: 'EE',
-    },
-    {
-        text: 'EC',
-        value: 'EC',
-    },
-    {
-        text: 'CS',
-        value: 'CS',
-    },
-]
-
-const Batch = [
-    {
-        text: 'All',
-        value: 'All',
-    },
-    {
-        text: '2018',
-        value: '2018',
-    },
-    {
-        text: '2019',
-        value: '2019',
-    },
-    {
-        text: '2020',
-        value: '2020',
-    },
-]
-
-const Time = [
-    {
-        text: 'All',
-        value: 'All',
-    },
-    {
-        text: 'Fulltime',
-        value: 'Fulltime',
-    },
-    {
-        text: 'Intern',
-        value: 'Intern',
-    }
-]
-
-const Type = [
-    {
-        text: 'All',
-        value: 'All',
-    },
-    {
-        text: 'Core',
-        value: 'Core',
-    },
-    {
-        text: 'Non-Core',
-        value: 'Non-Core',
-    },
-    {
-        text: 'Analytics',
-        value: 'Analytics',
-    }
-]
 
 function Legends() {
 
-    const [batch, setBatch] = useState('');
-    const [branch, setBranch] = useState('');
-    const [type, setType] = useState('');
-    const [time, setTime] = useState('');
+    const [batch, setBatch] = useState('All');
+    const [branch, setBranch] = useState('All');
+    const [type, setType] = useState('All');
+    const [time, setTime] = useState('All');
+    const [companies, setCompanies] = useState('All');
     const [response, setResponse] = useState([]);
 
+
     useEffect(() => {
+
+
 
         if (batch === "All") setBatch("");
         if (branch === "All") setBranch("");
         if (type === "All") setType("");
         if (time === "All") setTime("");
+        if (companies === "All") setCompanies("");
 
         const func = async () => {
             const data = {
                 batch: batch,
                 branch: branch,
-                type: time,
-                time: type
+                type: type,
+                time: time,
+                company: companies
             }
+            console.log(data)
             const res = await client.post("/legends/getLegends", data);
 
             console.log(res)
@@ -106,55 +46,107 @@ function Legends() {
         }
         func();
 
-    }, [batch, branch, time, type]);
+    }, [batch, branch, time, type, companies]);
 
     const handleChange = (value, setter) => {
         setter(value);
     };
 
     return <div><div style={{ border: "1px solid black", padding: "1rem", display: "flex", justifyContent: "space-around" }}>
-        <Dropdown
-            inline
-            header='Batch'
-            options={Batch}
-            defaultValue={Batch[0].value}
-            onChange={(e, { value }) => {
-                handleChange(value, setBatch);
-            }}
-        />
-        <Dropdown
-            inline
-            header='Branch'
-            options={Branch}
-            defaultValue={Branch[0].value}
-            onChange={(e, { value }) => {
-                handleChange(value, setBranch);
-            }}
-        />
-        <Dropdown
-            inline
-            header='Time'
-            options={Time}
-            defaultValue={Time[0].value}
-            onChange={(e, { value }) => {
-                handleChange(value, setTime);
-            }}
-        />
-        <Dropdown
-            inline
-            header='Type'
-            options={Type}
-            defaultValue={Type[0].value}
-            onChange={(e, { value }) => {
-                handleChange(value, setType);
-            }}
-        />
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            Branch:
+            <Dropdown
+                inline
+                header='Branch'
+                options={[{
+                    text: 'All',
+                    value: 'All',
+                }, ...Branches]}
+                defaultValue={'All'}
+                onChange={(e, { value }) => {
+                    handleChange(value, setBranch);
+                }}
+            />
+        </div>
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            Batch:
+            <Dropdown
+                inline
+                header='Batch'
+                options={[{
+                    text: 'All',
+                    value: 'All',
+                }, ...Batches]}
+                defaultValue={'All'}
+                onChange={(e, { value }) => {
+                    handleChange(value, setBatch);
+                }}
+            />
+        </div>
+
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            Type:
+            <Dropdown
+                inline
+                header='Type'
+                options={[{
+                    text: 'All',
+                    value: 'All',
+                }, ...Types]}
+                defaultValue={'All'}
+                onChange={(e, { value }) => {
+                    handleChange(value, setType);
+                }}
+            />
+        </div>
+
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            Time:
+            <Dropdown
+                inline
+                header='Time'
+                options={[{
+                    text: 'All',
+                    value: 'All',
+                }, ...Times]}
+                defaultValue={'All'}
+                onChange={(e, { value }) => {
+                    handleChange(value, setTime);
+                }}
+            />
+        </div>
+
+        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
+            company:
+            <Dropdown
+                inline
+                header='Companies'
+                options={[{
+                    text: 'All',
+                    value: 'All',
+                }, ...Companies]}
+                defaultValue={'All'}
+                onChange={(e, { value }) => {
+                    handleChange(value, setCompanies);
+                }}
+            />
+        </div>
 
 
     </div>
-        <div>
+        <div style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "3%",
+        }}>
             {response.map((val) => {
-                return <Cards key={val._id} data={val} />
+                return <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    margin: "2%",
+                }}> <Cards key={val._id} data={val} /> </div>
             })}
         </div></div>;
 }

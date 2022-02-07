@@ -21,6 +21,9 @@ export default function Navbar() {
                 <Link to="/create">
                     <li>Add</li>
                 </Link>
+                <Link to="/allpost">
+                    <li>Update Posts</li>
+                </Link>
             </UlWrapper>
         </NavbarWrapper>
     );
