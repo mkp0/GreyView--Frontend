@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Routes } from "./Assets/Routes/Routes";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from './Components/Footer/Footer'
 // import currencyFormatter from "currency-formatter"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           ))}
         </Switch>
       </Router>
+      <Footer/>
       {/* {currencyFormatter.format(1000000, { code: 'INR' })} */}
     </div>
   );

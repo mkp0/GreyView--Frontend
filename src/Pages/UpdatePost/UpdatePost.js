@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown, Input, Button } from 'semantic-ui-react'
+import { Dropdown, Input, Button ,Form} from 'semantic-ui-react'
 import client from "../../Utils/CONNECTION";
 import { useParams } from 'react-router-dom'
 
@@ -68,99 +68,112 @@ function UpdatePost(props) {
     }
     // const [time, setTime] = useState('');
 
-    return <div>
-        <Input placeholder=' Name ' value={name} onChange={(e, { value }) => {
+    return <div><Form>
+        
+    
+    <Form.Field inline>
+        <label style={{margin : "0px 10px"}}>Name</label>
+        <Input placeholder='Name : ' value={name} onChange={(e, { value }) => {
             handleChange(value, setName);
-
         }} />
-        <Input placeholder='Amount ' value={Package} onChange={(e, { value }) => {
+
+        
+    </Form.Field>
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Amount : </label>
+    <Input placeholder='money in K or LPA' value={Package} onChange={(e, { value }) => {
             handleChange(value, setPackage);
         }} />
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Batch:
-            <Dropdown
+
+        <label style={{margin : "0px 10px"}}>Pricing</label>
+                    <Dropdown
+                        inline
+                        header='Pricing'
+                        options={Pricing}
+                        value={pricing}
+                        defaultValue={Pricing[0].value}
+                        onChange={(e, { value }) => {
+                            handleChange(value, setPricing);
+                        }}
+                    />
+    </Form.Field>
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Batch : </label>
+    <Dropdown
                 inline
                 header='Batch'
                 options={Batches}
-                defaultValue={Batches[0].value}
                 value={batch}
+                defaultValue={Batches[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setBatch);
                 }}
             />
-        </div>
+    </Form.Field>
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Branch:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Branch : </label>
+    <Dropdown
                 inline
                 header='Branch'
-                value={branch}
                 options={Branches}
+                value={branch}
                 defaultValue={Branches[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setBranch);
                 }}
             />
-        </div>
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Pricing:
-            <Dropdown
-                inline
-                header='Pricing'
-                options={Pricing}
-                value={pricing}
-                defaultValue={Pricing[0].value}
-                onChange={(e, { value }) => {
-                    handleChange(value, setPricing);
-                }}
-            />
-        </div>
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Type:
-            <Dropdown
+    </Form.Field>
+
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Type : </label>
+    <Dropdown
                 inline
                 header='Type'
-                value={type}
                 options={Types}
+                value={type}
                 defaultValue={Types[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setType);
                 }}
             />
-        </div>
+    </Form.Field>
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Type:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Time : </label>
+    <Dropdown
                 inline
                 header='Time'
-                value={time}
                 options={Times}
+                value={time}
                 defaultValue={Times[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setTime);
                 }}
             />
-        </div>
+    </Form.Field>
+       
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            company:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>company : </label>
+    <Dropdown
                 inline
                 header='Companies'
-                value={companies}
                 options={Companies}
+                value={companies}
                 defaultValue={Companies[0].value}
                 onChange={(e, { value }) => {
                     handleChange(value, setCompanies);
                 }}
             />
-        </div>
+    </Form.Field>
 
         <Button onClick={handleDelete}>Delete</Button>
         <Button onClick={handleSumit}>Submit</Button>
-    </div >;
+</Form></div >;
 }
 
 export default UpdatePost;

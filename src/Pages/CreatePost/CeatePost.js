@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, Input, Button } from 'semantic-ui-react'
+import { Dropdown, Input, Button,Form } from 'semantic-ui-react'
 import client from "../../Utils/CONNECTION";
 
 import { Branches } from "../../Assets/Data/branchData"
@@ -46,17 +46,39 @@ function CeatePost() {
         console.log(res)
     }
 
-    return <div>
-        <Input placeholder=' Name ' onChange={(e, { value }) => {
+    return <div style={{padding : "2rem 1rem"}}><Form>
+        
+    
+    <Form.Field inline>
+        <label style={{margin : "0px 10px"}}>Name</label>
+        <Input placeholder='Name : ' onChange={(e, { value }) => {
             handleChange(value, setName);
-
         }} />
-        <Input placeholder='Amount ' onChange={(e, { value }) => {
+
+        
+    </Form.Field>
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Amount : </label>
+    <Input placeholder='money in K or LPA' onChange={(e, { value }) => {
             handleChange(value, setPackage);
         }} />
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Batch:
-            <Dropdown
+
+        <label style={{margin : "0px 10px"}}>Pricing</label>
+                    <Dropdown
+                        inline
+                        header='Pricing'
+                        options={Pricing}
+                        defaultValue={Pricing[0].value}
+                        onChange={(e, { value }) => {
+                            handleChange(value, setPricing);
+                        }}
+                    />
+    </Form.Field>
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Batch : </label>
+    <Dropdown
                 inline
                 header='Batch'
                 options={Batches}
@@ -65,11 +87,11 @@ function CeatePost() {
                     handleChange(value, setBatch);
                 }}
             />
-        </div>
+    </Form.Field>
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Branch:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Branch : </label>
+    <Dropdown
                 inline
                 header='Branch'
                 options={Branches}
@@ -78,22 +100,12 @@ function CeatePost() {
                     handleChange(value, setBranch);
                 }}
             />
-        </div>
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Pricing:
-            <Dropdown
-                inline
-                header='Pricing'
-                options={Pricing}
-                defaultValue={Pricing[0].value}
-                onChange={(e, { value }) => {
-                    handleChange(value, setPricing);
-                }}
-            />
-        </div>
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Type:
-            <Dropdown
+    </Form.Field>
+
+
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Type : </label>
+    <Dropdown
                 inline
                 header='Type'
                 options={Types}
@@ -102,11 +114,11 @@ function CeatePost() {
                     handleChange(value, setType);
                 }}
             />
-        </div>
+    </Form.Field>
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            Type:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>Time : </label>
+    <Dropdown
                 inline
                 header='Time'
                 options={Times}
@@ -115,11 +127,12 @@ function CeatePost() {
                     handleChange(value, setTime);
                 }}
             />
-        </div>
+    </Form.Field>
+       
 
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-            company:
-            <Dropdown
+    <Form.Field inline>
+    <label style={{margin : "0px 10px"}}>company : </label>
+    <Dropdown
                 inline
                 header='Companies'
                 options={Companies}
@@ -128,10 +141,12 @@ function CeatePost() {
                     handleChange(value, setCompanies);
                 }}
             />
-        </div>
+    </Form.Field>
+       
+        
 
         <Button onClick={handleSumit}>Submit</Button>
-    </div >;
+   </Form> </div >;
 }
 
 export default CeatePost;

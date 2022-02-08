@@ -25,11 +25,21 @@ function AllPost() {
 
 
 
-    return <div>
+    return <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "3%",
+    }}>
         {response.map((val) => {
 
 
-            return <Link to={`/update/${val._id}`}><Cards key={val._id} data={val} /></Link>
+            return <div style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: "2%",
+            }}><Link to={`/update/${val._id}`}><Cards key={val._id} data={val} /></Link></div>
         })}
     </div>
 }

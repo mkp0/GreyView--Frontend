@@ -11,11 +11,11 @@ import { Times } from "../../Assets/Data/timeData"
 
 function Legends() {
 
-    const [batch, setBatch] = useState('All');
-    const [branch, setBranch] = useState('All');
-    const [type, setType] = useState('All');
-    const [time, setTime] = useState('All');
-    const [companies, setCompanies] = useState('All');
+    const [batch, setBatch] = useState('');
+    const [branch, setBranch] = useState('');
+    const [type, setType] = useState('');
+    const [time, setTime] = useState('');
+    const [companies, setCompanies] = useState('');
     const [response, setResponse] = useState([]);
 
 
