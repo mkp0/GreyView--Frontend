@@ -1,34 +1,73 @@
 import styled from "styled-components";
 
-export const NavbarWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  background-color: #000000;
+export const MenuLink = styled.a`
+  font-family: "Supermercado One", cursive;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #fafafa;
+  transition: all 0.3s ease-in;
+  font-size: 1.1rem;
+  &:hover {
+    color: #7b7fda;
+  }
+  @media (max-width: 768px) {
+    padding: 0rem 0rem;
+  }
 `;
 
-export const UlWrapper = styled.div`
+export const Nav = styled.div`
+  padding: 0.5rem 2rem;
   display: flex;
-  width: 40%;
-  justify-content: space-around;
-  list-style: none;
-  & a {
-    text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const Logo = styled.a`
+  padding: 1rem 0;
+  color: #7b7fda;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.7rem;
+  span {
+    font-weight: 300;
+    font-size: 1.3rem;
   }
-  & li {
-    padding: 1.5rem;
-    color: white;
-    transition: 0.5s;
-  }
-  & li:hover {
-    background-color: white;
-    color: black;
-  }
-  @media (max-width: 1000px) {
-    width: 70%;
-  }
-  @media (max-width: 600px) {
-    display: block;
+`;
+
+export const Menu = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  @media (max-width: 768px) {
+    overflow: hidden;
+    flex-direction: column;
+    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    transition: max-height 0.3s ease-in;
     width: 100%;
-    text-align: center;
+  }
+`;
+
+export const Hamburger = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  span {
+    height: 2px;
+    width: 25px;
+    background: #7b7fda;
+    margin-bottom: 4px;
+    border-radius: 5px;
+  }
+  @media (max-width: 768px) {
+    display: flex;
   }
 `;

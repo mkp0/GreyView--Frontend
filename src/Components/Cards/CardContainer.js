@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
 export default function CardContainer({ children }) {
-
-    const Container = styled.div`
+  const Container = styled.div`
     padding: 47px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     height: 353px;
     width: 411px;
     display: flex;
@@ -14,13 +13,9 @@ export default function CardContainer({ children }) {
     align-items: center;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
     @media (max-width: 510px) {
-    width: 270px;
-  }
+      width: 270px;
+    }
   `;
 
-    return (
-        <Container>
-            {children}
-        </Container>
-    )
+  return <Container>{children}</Container>;
 }
