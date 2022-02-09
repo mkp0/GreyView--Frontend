@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown, Input, Button, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import client from "../../Utils/CONNECTION";
 import { useParams } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import { Pricing } from "../../Assets/Data/pricingData";
 import { Types } from "../../Assets/Data/TypeData";
 import { Companies } from "../../Assets/Data/companydata";
 import { Times } from "../../Assets/Data/timeData";
+import { UpdatePostWrapper } from "./UpdatePostWrapper.style";
 
 function UpdatePost(props) {
   let { id } = useParams();
@@ -66,32 +67,31 @@ function UpdatePost(props) {
 
   return (
     <div>
-      <Form>
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Name</label>
-          <Input
-            placeholder="Name : "
+      return (
+      <UpdatePostWrapper>
+        <Form>
+          <Form.Input
+            fluid
+            label="Name"
             value={name}
+            placeholder="Name"
             onChange={(e, { value }) => {
               handleChange(value, setName);
             }}
           />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Amount : </label>
-          <Input
-            placeholder="money in K or LPA"
+          <Form.Input
+            fluid
+            label="Amount"
             value={Package}
+            placeholder="Amount"
             onChange={(e, { value }) => {
               handleChange(value, setPackage);
             }}
           />
-
-          <label style={{ margin: "0px 10px" }}>Pricing</label>
-          <Dropdown
-            inline
-            header="Pricing"
+          <Form.Select
+            fluid
+            label="Pricing"
+            placeholder="Pricing"
             options={Pricing}
             value={pricing}
             defaultValue={Pricing[0].value}
@@ -99,69 +99,10 @@ function UpdatePost(props) {
               handleChange(value, setPricing);
             }}
           />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Batch : </label>
-          <Dropdown
-            inline
-            header="Batch"
-            options={Batches}
-            value={batch}
-            defaultValue={Batches[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setBatch);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Branch : </label>
-          <Dropdown
-            inline
-            header="Branch"
-            options={Branches}
-            value={branch}
-            defaultValue={Branches[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setBranch);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Type : </label>
-          <Dropdown
-            inline
-            header="Type"
-            options={Types}
-            value={type}
-            defaultValue={Types[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setType);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Time : </label>
-          <Dropdown
-            inline
-            header="Time"
-            options={Times}
-            value={time}
-            defaultValue={Times[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setTime);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>company : </label>
-          <Dropdown
-            inline
-            header="Companies"
+          <Form.Select
+            fluid
+            label="Company"
+            placeholder="Company"
             options={Companies}
             value={companies}
             defaultValue={Companies[0].value}
@@ -169,11 +110,58 @@ function UpdatePost(props) {
               handleChange(value, setCompanies);
             }}
           />
-        </Form.Field>
-
-        <Button onClick={handleDelete}>Delete</Button>
-        <Button onClick={handleSumit}>Submit</Button>
-      </Form>
+          <Form.Select
+            fluid
+            label="Batches"
+            placeholder="Batches"
+            options={Batches}
+            value={batch}
+            defaultValue={Batches[0].value}
+            onChange={(e, { value }) => {
+              handleChange(value, setBatch);
+            }}
+          />
+          <Form.Select
+            fluid
+            label="Branches"
+            placeholder="Branches"
+            options={Branches}
+            value={branch}
+            defaultValue={Branches[0].value}
+            onChange={(e, { value }) => {
+              handleChange(value, setBranch);
+            }}
+          />
+          <Form.Select
+            fluid
+            label="Types"
+            placeholder="Types"
+            options={Types}
+            value={type}
+            defaultValue={Types[0].value}
+            onChange={(e, { value }) => {
+              handleChange(value, setType);
+            }}
+          />
+          <Form.Select
+            fluid
+            label="Time"
+            placeholder="Time"
+            options={Times}
+            value={time}
+            defaultValue={Times[0].value}
+            onChange={(e, { value }) => {
+              handleChange(value, setTime);
+            }}
+          />
+          <Form.Button style={{ color: "green" }} onClick={handleSumit}>
+            Submit
+          </Form.Button>
+          <Form.Button style={{ color: "red" }} onClick={handleDelete}>
+            Delete
+          </Form.Button>
+        </Form>
+      </UpdatePostWrapper>
     </div>
   );
 }

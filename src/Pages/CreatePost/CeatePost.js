@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dropdown, Input, Button, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import client from "../../Utils/CONNECTION";
 
 import { Branches } from "../../Assets/Data/branchData";
@@ -8,6 +8,7 @@ import { Pricing } from "../../Assets/Data/pricingData";
 import { Types } from "../../Assets/Data/TypeData";
 import { Companies } from "../../Assets/Data/companydata";
 import { Times } from "../../Assets/Data/timeData";
+import { CreatePostWrapper } from "./CreatePost.style";
 
 function CeatePost() {
   const [name, setName] = useState("");
@@ -42,107 +43,87 @@ function CeatePost() {
   };
 
   return (
-    <div style={{ padding: "2rem 1rem" }}>
+    <CreatePostWrapper>
       <Form>
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Name</label>
-          <Input
-            placeholder="Name : "
-            onChange={(e, { value }) => {
-              handleChange(value, setName);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Amount : </label>
-          <Input
-            placeholder="money in K or LPA"
-            onChange={(e, { value }) => {
-              handleChange(value, setPackage);
-            }}
-          />
-
-          <label style={{ margin: "0px 10px" }}>Pricing</label>
-          <Dropdown
-            inline
-            header="Pricing"
-            options={Pricing}
-            defaultValue={Pricing[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setPricing);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Batch : </label>
-          <Dropdown
-            inline
-            header="Batch"
-            options={Batches}
-            defaultValue={Batches[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setBatch);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Branch : </label>
-          <Dropdown
-            inline
-            header="Branch"
-            options={Branches}
-            defaultValue={Branches[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setBranch);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Type : </label>
-          <Dropdown
-            inline
-            header="Type"
-            options={Types}
-            defaultValue={Types[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setType);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>Time : </label>
-          <Dropdown
-            inline
-            header="Time"
-            options={Times}
-            defaultValue={Times[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setTime);
-            }}
-          />
-        </Form.Field>
-
-        <Form.Field inline>
-          <label style={{ margin: "0px 10px" }}>company : </label>
-          <Dropdown
-            inline
-            header="Companies"
-            options={Companies}
-            defaultValue={Companies[0].value}
-            onChange={(e, { value }) => {
-              handleChange(value, setCompanies);
-            }}
-          />
-        </Form.Field>
-
-        <Button onClick={handleSumit}>Submit</Button>
-      </Form>{" "}
-    </div>
+        <Form.Input
+          fluid
+          label="Name"
+          placeholder="Name"
+          onChange={(e, { value }) => {
+            handleChange(value, setName);
+          }}
+        />
+        <Form.Input
+          fluid
+          label="Amount"
+          placeholder="Amount"
+          onChange={(e, { value }) => {
+            handleChange(value, setPackage);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Pricing"
+          placeholder="Pricing"
+          options={Pricing}
+          defaultValue={Pricing[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setPricing);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Company"
+          placeholder="Company"
+          options={Companies}
+          defaultValue={Companies[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setCompanies);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Batches"
+          placeholder="Batches"
+          options={Batches}
+          defaultValue={Batches[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setBatch);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Branches"
+          placeholder="Branches"
+          options={Branches}
+          defaultValue={Branches[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setBranch);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Types"
+          placeholder="Types"
+          options={Types}
+          defaultValue={Types[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setType);
+          }}
+        />
+        <Form.Select
+          fluid
+          label="Time"
+          placeholder="Time"
+          options={Times}
+          defaultValue={Times[0].value}
+          onChange={(e, { value }) => {
+            handleChange(value, setTime);
+          }}
+        />
+        <Form.Button onClick={handleSumit}>Submit</Form.Button>
+      </Form>
+    </CreatePostWrapper>
   );
 }
 
