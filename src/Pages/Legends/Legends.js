@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import Cards from "../../Components/Cards/Cards";
 import client from "../../Utils/CONNECTION";
 import { Branches } from "../../Assets/Data/branchData";
@@ -7,6 +7,7 @@ import { Batches } from "../../Assets/Data/batchData";
 import { Types } from "../../Assets/Data/TypeData";
 import { Companies } from "../../Assets/Data/companydata";
 import { Times } from "../../Assets/Data/timeData";
+import { AddItemWrapper } from "./Legends.style";
 
 function Legends() {
   const [batch, setBatch] = useState("");
@@ -47,19 +48,13 @@ function Legends() {
 
   return (
     <div>
-      <div
-        style={{
-          border: "1px solid black",
-          padding: "1rem",
-          display: "flex",
-          justifyContent: "space-around",
-        }}
-      >
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-          Branch:
-          <Dropdown
-            inline
-            header="Branch"
+      <AddItemWrapper>
+        <h2>Filters</h2>
+        <Form>
+          <Form.Select
+            fluid
+            label="Branches"
+            placeholder="Branches"
             options={[
               {
                 text: "All",
@@ -72,69 +67,10 @@ function Legends() {
               handleChange(value, setBranch);
             }}
           />
-        </div>
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-          Batch:
-          <Dropdown
-            inline
-            header="Batch"
-            options={[
-              {
-                text: "All",
-                value: "All",
-              },
-              ...Batches,
-            ]}
-            defaultValue={"All"}
-            onChange={(e, { value }) => {
-              handleChange(value, setBatch);
-            }}
-          />
-        </div>
-
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-          Type:
-          <Dropdown
-            inline
-            header="Type"
-            options={[
-              {
-                text: "All",
-                value: "All",
-              },
-              ...Types,
-            ]}
-            defaultValue={"All"}
-            onChange={(e, { value }) => {
-              handleChange(value, setType);
-            }}
-          />
-        </div>
-
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-          Time:
-          <Dropdown
-            inline
-            header="Time"
-            options={[
-              {
-                text: "All",
-                value: "All",
-              },
-              ...Times,
-            ]}
-            defaultValue={"All"}
-            onChange={(e, { value }) => {
-              handleChange(value, setTime);
-            }}
-          />
-        </div>
-
-        <div style={{ margin: "1rem", fontSize: "1.5rem" }}>
-          company:
-          <Dropdown
-            inline
-            header="Companies"
+          <Form.Select
+            fluid
+            label="Companies"
+            placeholder="Companies"
             options={[
               {
                 text: "All",
@@ -147,8 +83,56 @@ function Legends() {
               handleChange(value, setCompanies);
             }}
           />
-        </div>
-      </div>
+          <Form.Select
+            fluid
+            label="Time"
+            placeholder="Time"
+            options={[
+              {
+                text: "All",
+                value: "All",
+              },
+              ...Times,
+            ]}
+            defaultValue={"All"}
+            onChange={(e, { value }) => {
+              handleChange(value, setTime);
+            }}
+          />
+          <Form.Select
+            fluid
+            label="Type"
+            placeholder="Type"
+            options={[
+              {
+                text: "All",
+                value: "All",
+              },
+              ...Types,
+            ]}
+            defaultValue={"All"}
+            onChange={(e, { value }) => {
+              handleChange(value, setType);
+            }}
+          />
+          <Form.Select
+            fluid
+            label="Batch"
+            placeholder="Batch"
+            options={[
+              {
+                text: "All",
+                value: "All",
+              },
+              ...Batches,
+            ]}
+            defaultValue={"All"}
+            onChange={(e, { value }) => {
+              handleChange(value, setBatch);
+            }}
+          />
+        </Form>
+      </AddItemWrapper>
       <div
         style={{
           display: "flex",

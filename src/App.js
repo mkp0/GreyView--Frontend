@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Routes } from "./Assets/Routes/Routes";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
+import Cookies from "universal-cookie";
+import client from "./Utils/CONNECTION";
 
 // import currencyFormatter from "currency-formatter"
 export const AuthContext = React.createContext();
 export const SetAuthContext = React.createContext();
+const cookies = new Cookies();
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -15,6 +18,19 @@ function App() {
     console.log(val);
     setAuth(val);
   }
+
+  useEffect(() => {
+    console.log(cookies.get("token"));
+    const func = async () => {
+      try {
+        await client.get("/auth");
+        setAuth(true);
+      } catch (err) {
+        console.log("not valid token");
+      }
+    };
+    func();
+  }, []);
 
   return (
     <AuthContext.Provider value={auth}>
