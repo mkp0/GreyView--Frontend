@@ -4,6 +4,7 @@ import About from "../../Pages/About/About";
 import CeatePost from "../../Pages/CreatePost/CeatePost";
 import UpdatePost from "../../Pages/UpdatePost/UpdatePost";
 import AllPost from "../../Pages/AllPost/AllPost";
+import Login from "../../Pages/Login/Login";
 export const Routes = [
   {
     id: 1,
@@ -33,6 +34,12 @@ export const Routes = [
     id: 6,
     component: UpdatePost,
     path: "/update/:id",
+    exact: true,
+  },
+  {
+    id: 7,
+    component: Login,
+    path: "/login",
     exact: true,
   },
   {
