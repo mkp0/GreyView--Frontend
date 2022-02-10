@@ -10,10 +10,10 @@ function Footer() {
         <a href="https://www.instagram.com/laughing_luffy/">
           <i className="fa fa-twitter"></i>
         </a>
-        <a href="https://www.instagram.com/laughing_luffy/">
+        <a href="https://www.linkedin.com/in/imluffy/">
           <i className="fa fa-linkedin"></i>
         </a>
-        <a href="https://www.instagram.com/laughing_luffy/">
+        <a href="https://github.com/mkp0/">
           <i className="fa fa-github"></i>
         </a>
       </div>

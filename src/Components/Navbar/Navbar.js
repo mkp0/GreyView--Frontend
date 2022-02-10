@@ -56,7 +56,7 @@ function Navbar() {
       </NavItem>
       <NavItemBtn>
         {button ? (
-          <NavBtnLink to="/logout">
+          <NavBtnLink to="/login">
             <Button
               primary
               onClick={() => {
@@ -69,7 +69,7 @@ function Navbar() {
             </Button>
           </NavBtnLink>
         ) : (
-          <NavBtnLink to="/">
+          <NavBtnLink to="/login">
             <Button
               onClick={() => {
                 logout(false);
