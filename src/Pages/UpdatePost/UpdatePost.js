@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form } from "semantic-ui-react";
 import client from "../../Utils/CONNECTION";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, useHistory } from "react-router-dom";
 import { AuthContext } from "../../App";
 import { Branches } from "../../Assets/Data/branchData";
 import { Batches } from "../../Assets/Data/batchData";
@@ -13,6 +13,7 @@ import { UpdatePostWrapper } from "./UpdatePostWrapper.style";
 
 function UpdatePost(props) {
   let { id } = useParams();
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [Package, setPackage] = useState("");
@@ -59,11 +60,13 @@ function UpdatePost(props) {
     };
 
     const res = await client.put(`/legends/updateLegend/${id}`, data);
+    history.push("/legends");
     console.log(res);
   };
 
   const handleDelete = async () => {
     await client.delete(`/Legends/deleteLegend/${id}`);
+    history.push("/legends");
   };
   // const [time, setTime] = useState('');
 

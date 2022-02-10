@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
 import client from "../../Utils/CONNECTION";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { AuthContext } from "../../App";
 import { Branches } from "../../Assets/Data/branchData";
 import { Batches } from "../../Assets/Data/batchData";
@@ -22,6 +22,7 @@ function CeatePost() {
   const [companies, setCompanies] = useState(Companies[0].value);
 
   const auth = useContext(AuthContext);
+  const history = useHistory();
 
   const handleChange = (value, setter) => {
     setter(value);
@@ -42,6 +43,7 @@ function CeatePost() {
     console.log(data);
 
     const res = await client.post("/legends/postLegend", data);
+    history.push("/legends");
     console.log(res);
   };
 
