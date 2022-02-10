@@ -1,10 +1,11 @@
 import React from "react";
-
+import { Div1 } from "./About.style";
 function About() {
   return (
-    <div>
-      <h1>Welcome to About</h1>
-    </div>
+    <Div1>
+      <h2>Coming Soon!!</h2>
+      <h3>Come back later :(</h3>
+    </Div1>
   );
 }
 
