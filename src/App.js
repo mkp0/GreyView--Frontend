@@ -12,7 +12,7 @@ export const SetAuthContext = React.createContext();
 const cookies = new Cookies();
 
 function App() {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   function setAuthentication(val) {
     console.log(val);
