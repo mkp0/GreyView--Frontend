@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
 import client from "../../Utils/CONNECTION";
 import Cookies from "universal-cookie";
+import { useHistory } from "react-router-dom";
 import { SetAuthContext } from "../../App";
+import swal from "sweetalert";
 
 const cookies = new Cookies();
 
 function Login() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-
+  const history = useHistory();
   const login = useContext(SetAuthContext);
 
   const onChangeInput = (setI, val) => {
@@ -18,7 +20,7 @@ function Login() {
   const onSubmit = async () => {
     console.log(id, password);
     if (!id || !password) {
-      alert("Fill the Form");
+      swal("Fill the Form");
       return;
     }
 
@@ -30,9 +32,10 @@ function Login() {
 
       cookies.set("token", data.data.token, { path: "/" });
       login(true);
+      history.push("/");
       console.log(data);
     } catch (err) {
-      alert("Something went wrong try again!!");
+      swal("Admin User Id or Password wrong");
     }
   };
 
