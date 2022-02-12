@@ -25,18 +25,9 @@ function Legends() {
     if (companies === "All") setCompanies("");
 
     const func = async () => {
-      const data = {
-        batch: batch,
-        branch: branch,
-        type: type,
-        time: time,
-        company: companies,
-      };
-      console.log(data);
-      const res = await client.post("/legends/getLegends", data);
-
+      const query = `?batch=${batch}&branch=${branch}&type=${type}&time=${time}&company=${companies}`;
+      const res = await client.get(`/legends/getLegends${query}`);
       console.log(res);
-
       setResponse(res.data);
     };
     func();
