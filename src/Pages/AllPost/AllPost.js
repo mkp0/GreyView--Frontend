@@ -10,7 +10,7 @@ function AllPost() {
 
   useEffect(() => {
     const func = async () => {
-      const res = await client.post("/legends/getLegends");
+      const res = await client.get("/legends/getLegends");
 
       setResponse(res.data);
     };
