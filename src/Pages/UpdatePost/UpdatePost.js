@@ -75,7 +75,6 @@ function UpdatePost(props) {
   } else {
     return (
       <div>
-        return (
         <UpdatePostWrapper>
           <Form>
             <Form.Input
